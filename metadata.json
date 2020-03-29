@@ -1,0 +1,17 @@
+{
+  "description": "Manage running services with the PM2 NodeJS process manager.",
+  "name": "PM2 Process Manager",
+  "settings-schema": "org.gnome.shell.extensions.pm2-process-manager",
+  "shell-version": [
+    "3.20",
+    "3.22",
+    "3.24",
+    "3.26",
+    "3.28",
+    "3.30",
+    "3.32"
+  ],
+  "url": "https://github.com/alexculea/gnome-shell-extension-pm2-js",
+  "uuid": "pm2-process-manager@bitplot.dev",
+  "version": 1
+}
