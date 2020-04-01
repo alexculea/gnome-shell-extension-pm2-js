@@ -1,5 +1,5 @@
 # PM2 Process Manager Gnome Shell Extension
-This is a simple toggle on/off extension for starting and stopping processes managed with PM2 (https:pm2.keymetrics.io/).
+This is a simple toggle on/off extension for starting and stopping processes managed with PM2 (https://pm2.keymetrics.io/).
 
 
 <img src="screenshot.png">
@@ -18,8 +18,7 @@ git clone https:github.com/alexculea/gnome-shell-extension-pm2-js.git
 # rename to UUID
 mv gnome-shell-extension-pm2-js pm2-process-manager@bitplot.dev
 ```
-
-Activate the extension with Gnome Tweaks
+Restart your shell. Alt+F2, type 'r' and Enter. Activate the extension with Gnome Tweaks. If you don't have it, install it with ``sudo apt install gnome-tweaks``.
 
 ## Troubleshooting
 
@@ -31,7 +30,7 @@ Pull requests welcome.
 
 1.1:
  - don't close menu as soon as toggle is clicked, instead change toggle after command completed and then close the menu
- - fix clicking the panel button <img src="assets/pm2-logo-dark.svg"> button while the menu is visible makes the menu recreate and flicker
+ - ✔ fix clicking the panel button <img src="assets/pm2-logo-dark.svg"> button while the menu is visible makes the menu recreate and flicker 
 
 1.2:
  - show loading indicator if startup takes more than 0.5s
