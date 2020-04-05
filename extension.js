@@ -19,48 +19,59 @@ const PM2ProcessManager = new Lang.Class({
     },
     createPanelMenu: function () {
       this.ui = Ui.createStatusPanel({ iconPath: Me.path + '/assets/pm2-logo-light.svg' }, Lang.bind(this, function() {
+        Lib.log('Click received');
         if (this.menuVisible) {
+          Lib.log('opening menu');
+          this.ui.container.menu.open();
           this.updateProcessList();
         }
+        return true;
       }));
 
-      const { container: { menu } } = this.ui;
+      const { container: { menu }, section } = this.ui;
+      section.addMenuItem(Ui.createSimpleMenuItem("Loading..."));
+      menu.addMenuItem(Ui.createSeparatorMenuItem());
+      
       const all = Ui.createSubMenu('All');
-
       all.menu.addMenuItem(Ui.createSimpleMenuItem("Start all", Lang.bind(this, this.comandForAll.bind(this, 'start'))));
       all.menu.addMenuItem(Ui.createSimpleMenuItem("Stop all", Lang.bind(this, this.comandForAll.bind(this, 'stop'))));
       all.menu.addMenuItem(Ui.createSimpleMenuItem("Resurrect", Lang.bind(this, this.comandForAll.bind(this, 'resurrect'))));
-
-      menu.connect('open-state-changed', Lang.bind(this, (menu, isOpen) => { this.menuVisible = isOpen }));
-      menu.addMenuItem(Ui.createSeparatorMenuItem());      
+      all.menu.addMenuItem(Ui.createSimpleMenuItem("Save", Lang.bind(this, this.comandForAll.bind(this, 'save'))));
+      menu.connect('open-state-changed', Lang.bind(this, (menu, isOpen) => this.menuVisible = isOpen ));
       menu.addMenuItem(all);
 
       Main.panel.addToStatusArea('pm2ProcessManager', this.ui.container);
     },
-    updateProcessList: async function () {
-      Lib.debugLog('prepareing UI')
+    updateProcessList: function () {
       const { section } = this.ui;
+      Lib.log('Populating processes.');
       try {
-        section.removeAll();
-        const processes = await PM2.getProcesses() || [];
-        processes.forEach(process => {
-          const { name, active } = PM2.getProcessInfo(process);
-          section.addMenuItem(Ui.createToggleMenuItem(
-            name, 
-            active, 
-            Lang.bind(this, this.toggleProcess.bind(this, process))
-          ));
-        });
+        PM2.getProcesses().then(processes => {
+          section.removeAll();
+          Lib.log('Retrieved processes.');
+          processes.forEach(process => {
+            const { name, active } = PM2.getProcessInfo(process);
+            section.addMenuItem(Ui.createToggleMenuItem(
+              name, 
+              active, 
+              Lang.bind(this, this.toggleProcess.bind(this, process))
+            ));
+          });
 
-        if (!processes.length) {
-          const item = Ui.createSimpleMenuItem('No PM2 processes.');
-          section.addMenuItem(item)
-        }
+          if (!processes.length) {
+            const item = Ui.createSimpleMenuItem('No PM2 processes.');
+            section.addMenuItem(item)
+          }
+
+          Lib.log('Done adding UI processes.');
+        });
       } catch (e) {
         section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2. See gnome-shell logs.'))
         Lib.log(`Error reading PM2 processes:`);
         Lib.log(e);
       }
+      Lib.log('Returned from click signal');
+      return true;
     },
     toggleProcess: async function (process, menuItem, toggled) {
       try {
@@ -80,7 +91,8 @@ const PM2ProcessManager = new Lang.Class({
         const actions = {
           start: PM2.startAll,
           stop: PM2.stopAll,
-          resurrect: PM2.resurrect
+          resurrect: PM2.resurrect,
+          save: PM2.save,
         }
         await actions[cmd]();
       } catch (e) {
