@@ -22,7 +22,7 @@ Restart your shell. Alt+F2, type 'r' and Enter. Activate the extension with Gnom
 
 ## Troubleshooting
 
-Errors will be logged by the extension in the gnome-shell log. On Ubuntu you can see it by running
+Errors will be logged by the extension in the gnome-shell log. On Ubuntu 19.04 you can see it by running
 ```journalctl /usr/bin/gnome-shell -f```. Your distro might have a different way of storing the shell logs.
 
 ## Roadmap
