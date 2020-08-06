@@ -58,7 +58,7 @@ const PM2ProcessManager = new Lang.Class({
         });
 
         if (!processes.length) {
-          const item = Ui.createSimpleMenuItem('No PM2 processes.');
+          const item = Ui.createSimpleMenuItem('No PM2 processes. If you previously saved, resurrect your PM2.');
           section.addMenuItem(item)
         }
 
