@@ -1,0 +1,4 @@
+# v1.1
+- converted command execution to PM2 from blocking (sync) to async, this results in snappier and more responsive UI altough various intermediate states are now briefly visible
+- various small UI bugs or glitches fixed
+- updated roadmap for 1.1

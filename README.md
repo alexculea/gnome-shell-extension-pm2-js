@@ -29,10 +29,10 @@ Errors will be logged by the extension in the gnome-shell log. On Ubuntu 19.04 y
 Pull requests welcome.
 
 1.1:
- - don't close menu as soon as toggle is clicked, instead change toggle after command completed and then close the menu
+ - ✔ convert shell command running to async (maybe even include it in 1.0?)
  - ✔ fix clicking the panel button <img src="assets/pm2-logo-dark.svg"> button while the menu is visible makes the menu recreate and flicker 
 
 1.2:
+ - don't close menu as soon as toggle is clicked, instead change toggle after command completed and then close the menu
  - show loading indicator if startup takes more than 0.5s
  - add show logs button for each entry, open the user default terminal instead of hardcoding
- - convert shell command running to async (maybe even include it in 1.0?)
