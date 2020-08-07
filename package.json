@@ -1,0 +1,21 @@
+{
+  "name": "gnome-shell-extension-pm2",
+  "version": "1.0.0",
+  "description": "This is a simple toggle on/off extension for starting and stopping processes managed with PM2 (https://pm2.keymetrics.io/).",
+  "main": "extension.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexculea/gnome-shell-extension-pm2-js.git"
+  },
+  "author": "Alex Culea",
+  "bugs": {
+    "url": "https://github.com/alexculea/gnome-shell-extension-pm2-js/issues"
+  },
+  "homepage": "https://github.com/alexculea/gnome-shell-extension-pm2-js#readme",
+  "devDependencies": {
+    "eslint": "^7.6.0"
+  }
+}
