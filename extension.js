@@ -22,11 +22,13 @@ const PM2ProcessManager = new Lang.Class({
     this.createPanelMenu();
   },
   createPanelMenu: function () {
+    // creates icon button that will stay on the system status panel
     this.ui = Ui.createStatusPanel({ iconPath: Me.path + '/assets/pm2-logo-light.svg' }, Lang.bind(this, function() {
       this.updateProcessList();
       return true;
     }));
 
+    // prepare extension menu UI sections and default items
     const { container: { menu }, section } = this.ui;
     section.addMenuItem(Ui.createSimpleMenuItem('Loading...'));
     menu.addMenuItem(Ui.createSeparatorMenuItem());
@@ -42,10 +44,12 @@ const PM2ProcessManager = new Lang.Class({
     allMenuEntries.forEach(item => all.menu.addMenuItem(
       Ui.createSimpleMenuItem(item.label, Lang.bind(this, item.cb))
     ));
-      
+
     menu.addMenuItem(all);
 
+    // add extension button to the system status panel
     Main.panel.addToStatusArea('pm2ProcessManager', this.ui.container);
+    Main.panel.connect('style-updated', Lang.bind(this, function(widget, user_data) { log('Received a style update from the system panel.'); }));
   },
   updateProcessList: async function () {
     const { section } = this.ui;
