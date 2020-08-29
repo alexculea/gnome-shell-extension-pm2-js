@@ -30,9 +30,10 @@ Pull requests welcome.
 
 1.1:
  - ✔ convert shell command running to async (maybe even include it in 1.0?)
- - ✔ fix clicking the panel button <img src="assets/pm2-logo-dark.svg"> button while the menu is visible makes the menu recreate and flicker 
+ - ✔ fix clicking the panel button <img src="assets/pm2-logo-dark.svg"> button while the menu is visible makes the menu recreate and flicker
+ - ✔ show loading indicator if startup takes more than 0.5s
 
 1.2:
  - don't close menu as soon as toggle is clicked, instead change toggle after command completed and then close the menu
- - show loading indicator if startup takes more than 0.5s
- - add show logs button for each entry, open the user default terminal instead of hardcoding
+ - add show logs button for each entry, open the gsettings user default terminal instead of hardcoded value
+ - ensure status area icon updates when used with a light gnome-shell theme

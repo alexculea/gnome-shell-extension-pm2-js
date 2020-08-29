@@ -2,3 +2,11 @@
 - converted command execution to PM2 from blocking (sync) to async, this results in snappier and more responsive UI altough various intermediate states are now briefly visible
 - various small UI bugs or glitches fixed
 - updated roadmap for 1.1
+
+# v1.1.1
+- fixed bug where error item is appended to an outdated list
+- fixed system panel button being slightly wider than standard extensions
+- fixed bug where error item is appended to an outdated list
+- fixed system panel button being slightly wider than standard extensions
+- internal code improvements (converted Lang.Class to ES6 JS Class)
+- streamline system status area (tray) icon
