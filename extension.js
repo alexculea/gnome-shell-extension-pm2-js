@@ -68,6 +68,7 @@ const PM2ProcessManager = new Lang.Class({
       }
 
     } catch (e) {
+      section.removeAll();
       section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2. See gnome-shell logs.'));
       Lib.log('Error reading PM2 processes:');
       Lib.log(e);
