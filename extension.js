@@ -31,7 +31,7 @@ var PM2ProcessManager = GObject.registerClass(
         // creates icon button that will stay on the system status panel
         this.ui = Ui.createStatusPanel(
           this,
-          { iconPath: `${Me.path}/assets/pm2-logo-light.svg` }, 
+          { iconFile: `${Me.path}/assets/pm2-logo-symbolic.svg` }, 
           Lang.bind(this, function() {
             this.updateProcessList();
             return true;
