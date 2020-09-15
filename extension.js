@@ -20,7 +20,6 @@ var PM2ProcessManager = GObject.registerClass(
 
         this.Name = 'PM2ProcessManager';
         this.ui = {};
-        this.testContainer = new PanelMenu.Button(0,0);
     
         // promise holding the initial process retrieval call from pm2
         // gets set to null when no execution is in progress
@@ -77,13 +76,13 @@ var PM2ProcessManager = GObject.registerClass(
         });
 
         if (!processes.length) {
-          const item = Ui.createSimpleMenuItem('No PM2 processes. If you previously saved, resurrect your PM2.');
+          const item = Ui.createSimpleMenuItem('No PM2 processes.\n\nIf you previously saved, resurrect your PM2.');
           section.addMenuItem(item);
         }
 
       } catch (e) {
         section.removeAll();
-        section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2. See gnome-shell logs.'));
+        section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2.\n\nSee gnome-shell logs.'));
         Lib.log('Error reading PM2 processes:');
         Lib.log(e);
       }
