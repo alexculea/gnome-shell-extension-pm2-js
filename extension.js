@@ -20,7 +20,8 @@ var PM2ProcessManager = GObject.registerClass(
 
         this.Name = 'PM2ProcessManager';
         this.ui = {};
-        this.testContainer = new PanelMenu.Button(0,0);
+        PM2.checkInstall()
+          .then((result => this.installState = result).bind(this));
     
         // promise holding the initial process retrieval call from pm2
         // gets set to null when no execution is in progress
@@ -83,7 +84,16 @@ var PM2ProcessManager = GObject.registerClass(
 
       } catch (e) {
         section.removeAll();
-        section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2. See gnome-shell logs.'));
+        if (this.installState.status === 'error') {
+          const installMessages = {
+            node: 'Can\'t check NodeJS version. Check that you have installed NodeJS and is available to the $PATH of your GNOME session.',
+            pm2: 'Can\'t check PM2 version. Make sure the \'pm2\' command is available to your GNOME session.'
+          };
+          const message = installMessages[this.installState.type] + '\nSee the Troubleshooting section of the project README.md for more info.';
+          section.addMenuItem(Ui.createSimpleMenuItem(message));
+        }
+
+        section.addMenuItem(Ui.createSimpleMenuItem('Error getting data from PM2.\nSee gnome-shell logs for more details.'));
         Lib.log('Error reading PM2 processes:');
         Lib.log(e);
       }

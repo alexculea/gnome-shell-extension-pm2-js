@@ -21,9 +21,18 @@ mv gnome-shell-extension-pm2-js pm2-process-manager@bitplot.dev
 Restart your shell. Alt+F2, type 'r' and Enter. Activate the extension with Gnome Tweaks. If you don't have it, install it with ``sudo apt install gnome-tweaks``.
 
 ## Troubleshooting
-
+### Logs
 Errors will be logged by the extension in the gnome-shell log. On Ubuntu 19.04 you can see it by running
 ```journalctl /usr/bin/gnome-shell -f```. Your distro might have a different way of storing the shell logs.
+### Can't find NodeJS or PM2 but I have them installed
+The extension uses the `PATH` env variable set for the GNOME session using the `~/.profile` or the `~/.bash_profile` files. If you used `~/.bashrc` instead to set your `PATH` for your NodeJS install (such as when using NVM) then this file won't be executed at login so your `PATH` won't contain your NodeJS install location. Make sure to place your bin folders in either `~/.profile` or `~/.bash_profile`. 
+
+For example, in your `~/.profile`:
+```BASH
+export PATH=$PATH:/path/to/your/node
+```
+
+More on what is `PATH`, [here](http://www.linfo.org/path_env_var.html)
 
 ## Roadmap
 Pull requests welcome.
