@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/alexculea/gnome-shell-extension-pm2-js#readme",
   "devDependencies": {
-    "eslint": "^7.6.0"
+    "eslint": "^9.39.1"
   }
 }
